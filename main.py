@@ -347,18 +347,12 @@ with tab1:
     # 인구대체율 기준선
     fig1.add_vline(
         x=2.1, line_dash="dot", line_color="#f59e0b", line_width=2,
-        annotation_text="🟡 인구대체율 2.1",
-        annotation_font_color="#f59e0b",
-        annotation_font_size=11,
-        annotation_position="top right",
+        annotation=dict(font=dict(color="#f59e0b", size=11), position="top right"),
     )
     # 초저출산 기준선
     fig1.add_vline(
         x=1.5, line_dash="dot", line_color="#f87171", line_width=1.5,
-        annotation_text="🔴 초저출산 1.5",
-        annotation_font_color="#f87171",
-        annotation_font_size=11,
-        annotation_position="bottom right",
+        annotation=dict(font=dict(color="#f87171", size=11), position="bottom right"),
     )
 
     fig1.update_layout(
@@ -367,7 +361,7 @@ with tab1:
             title="출산율 (명/여성)", range=[0, 3.4],
             gridcolor="rgba(255,255,255,0.06)", zeroline=False,
             tickfont=dict(color="#9ca3af"),
-            titlefont=dict(color="#9ca3af"),
+            title_font=dict(color="#9ca3af"),
         ),
         yaxis=dict(
             tickfont=dict(size=12, color="#e8e8f0"),
@@ -395,13 +389,16 @@ with tab1:
             st.markdown("🟡 **대체율 2.1** / 🔴 **초저 1.5**")
 
         # 다운로드 버튼
-        img_bytes = fig1.to_image(format="png", width=1400, height=900, scale=2)
-        st.download_button(
-            label="⬇️ 순위 이미지 다운로드 (PNG)",
-            data=img_bytes,
-            file_name="oecd_fertility_ranking.png",
-            mime="image/png",
-        )
+        try:
+            img_bytes = fig1.to_image(format="png", width=1400, height=900, scale=2)
+            st.download_button(
+                label="⬇️ 순위 이미지 다운로드 (PNG)",
+                data=img_bytes,
+                file_name="oecd_fertility_ranking.png",
+                mime="image/png",
+            )
+        except Exception:
+            st.info("💡 PNG 다운로드는 kaleido 설치 후 사용 가능합니다.")
 
     st.markdown("""<div class="note-box">
         ⚠️ <b>OECD 추정값 적용 국가</b>: 아이슬란드(1.59), 포르투갈(1.38), 아일랜드(1.62), 호주(1.58), 멕시코(1.82),
@@ -450,7 +447,7 @@ with tab2:
         coloraxis_colorbar=dict(
             title="출산율",
             tickfont=dict(color="#9ca3af"),
-            titlefont=dict(color="#9ca3af"),
+            title_font=dict(color="#9ca3af"),
         ),
         margin=dict(l=0, r=0, t=10, b=0),
     )
@@ -501,22 +498,14 @@ with tab3:
             ))
 
         # 기준선
-        fig3.add_hline(y=2.1, line_dash="dot", line_color="#f59e0b", line_width=1.5,
-                       annotation_text="인구대체율 2.1", annotation_font_color="#f59e0b",
-                       annotation_font_size=11, annotation_position="right")
-        fig3.add_hline(y=1.5, line_dash="dot", line_color="#f87171", line_width=1.5,
-                       annotation_text="초저출산 1.5", annotation_font_color="#f87171",
-                       annotation_font_size=11, annotation_position="right")
+        fig3.add_hline(y=2.1, line_dash="dot", line_color="#f59e0b", line_width=1.5)
+        fig3.add_hline(y=1.5, line_dash="dot", line_color="#f87171", line_width=1.5)
 
         # 코로나 시기 음영
         fig3.add_vrect(
             x0=2020, x1=2021,
             fillcolor="rgba(255,255,255,0.04)",
-            layer="below", line_width=0,
-            annotation_text="COVID-19",
-            annotation_font_color="#6b7280",
-            annotation_font_size=10,
-        )
+            layer="below", line_width=0        )
 
         fig3.update_layout(
             height=480,
@@ -524,14 +513,14 @@ with tab3:
                 title="연도",
                 gridcolor="rgba(255,255,255,0.06)",
                 tickfont=dict(color="#9ca3af"),
-                titlefont=dict(color="#9ca3af"),
+                title_font=dict(color="#9ca3af"),
             ),
             yaxis=dict(
                 title="출산율 (명/여성)",
                 range=[0.5, 3.5],
                 gridcolor="rgba(255,255,255,0.06)",
                 tickfont=dict(color="#9ca3af"),
-                titlefont=dict(color="#9ca3af"),
+                title_font=dict(color="#9ca3af"),
             ),
             legend=dict(
                 font=dict(color="#e8e8f0"),
@@ -593,25 +582,21 @@ with tab4:
             ),
         ))
 
-    fig4.add_vline(x=2.1, line_dash="dot", line_color="#f59e0b", line_width=1.5,
-                   annotation_text="인구대체율 2.1", annotation_font_color="#f59e0b",
-                   annotation_font_size=11)
-    fig4.add_vline(x=1.5, line_dash="dot", line_color="#f87171", line_width=1.5,
-                   annotation_text="초저출산 1.5", annotation_font_color="#f87171",
-                   annotation_font_size=11, annotation_position="bottom right")
+    fig4.add_vline(x=2.1, line_dash="dot", line_color="#f59e0b", line_width=1.5)
+    fig4.add_vline(x=1.5, line_dash="dot", line_color="#f87171", line_width=1.5)
 
     fig4.update_layout(
         height=540,
         xaxis=dict(
             title="출산율 (명/여성)", range=[0.6, 3.3],
             gridcolor="rgba(255,255,255,0.06)",
-            tickfont=dict(color="#9ca3af"), titlefont=dict(color="#9ca3af"),
+            tickfont=dict(color="#9ca3af"), title_font=dict(color="#9ca3af"),
         ),
         yaxis=dict(
             title="인구 (백만 명)",
             type="log",
             gridcolor="rgba(255,255,255,0.06)",
-            tickfont=dict(color="#9ca3af"), titlefont=dict(color="#9ca3af"),
+            tickfont=dict(color="#9ca3af"), title_font=dict(color="#9ca3af"),
         ),
         legend=dict(
             font=dict(color="#e8e8f0"),
