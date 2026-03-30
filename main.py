@@ -374,7 +374,7 @@ with tab1:
         ),
         plot_bgcolor="#0f0f1a",
         paper_bgcolor="#0f0f1a",
-        font=dict(family="Noto Sans KR, sans-serif", color="#e8e8f0"),
+        font=dict(family="Noto Sans KR", color="#e8e8f0"),
         margin=dict(l=20, r=80, t=30, b=50),
         showlegend=False,
     )
