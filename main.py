@@ -347,12 +347,16 @@ with tab1:
     # 인구대체율 기준선
     fig1.add_vline(
         x=2.1, line_dash="dot", line_color="#f59e0b", line_width=2,
-        annotation=dict(font=dict(color="#f59e0b", size=11), position="top right"),
+        annotation_text="인구대체율 2.1",
+        annotation_font=dict(color="#f59e0b", size=11),
+        annotation_position="top right",
     )
     # 초저출산 기준선
     fig1.add_vline(
         x=1.5, line_dash="dot", line_color="#f87171", line_width=1.5,
-        annotation=dict(font=dict(color="#f87171", size=11), position="bottom right"),
+        annotation_text="초저출산 1.5",
+        annotation_font=dict(color="#f87171", size=11),
+        annotation_position="bottom right",
     )
 
     fig1.update_layout(
