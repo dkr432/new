@@ -13,24 +13,28 @@ st.set_page_config(
 )
 
 # ─────────────────────────────────────────────
-#  Global Style
+#  Global Style — Light Theme
 # ─────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap');
 
 html, body, [class*="css"] {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
 .stApp {
-    background: #0f0f1a;
-    color: #e8e8f0;
+    background: #f8f9fc;
+    color: #1a1a2e;
+}
+
+[data-testid="stSidebar"] {
+    background: #ffffff;
 }
 
 .hero-section {
-    background: linear-gradient(135deg, #1a1a3e 0%, #0f0f1a 50%, #1a0f2e 100%);
-    border: 1px solid rgba(139,92,246,0.3);
+    background: linear-gradient(135deg, #eef2ff 0%, #f0f9ff 50%, #faf5ff 100%);
+    border: 1px solid rgba(99,102,241,0.2);
     border-radius: 20px;
     padding: 2.5rem 3rem;
     margin-bottom: 2rem;
@@ -45,15 +49,15 @@ html, body, [class*="css"] {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 70% 30%, rgba(139,92,246,0.08) 0%, transparent 60%),
-                radial-gradient(circle at 20% 80%, rgba(59,130,246,0.06) 0%, transparent 60%);
+    background: radial-gradient(circle at 70% 30%, rgba(99,102,241,0.07) 0%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(59,130,246,0.05) 0%, transparent 60%);
     pointer-events: none;
 }
 
 .hero-title {
     font-size: 2.6rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #a78bfa, #60a5fa, #f472b6);
+    background: linear-gradient(135deg, #4f46e5, #0ea5e9, #7c3aed);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -63,49 +67,51 @@ html, body, [class*="css"] {
 
 .hero-sub {
     font-size: 0.95rem;
-    color: #9ca3af;
-    font-weight: 300;
+    color: #64748b;
+    font-weight: 400;
 }
 
 .kpi-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
     padding: 1.4rem 1.6rem;
     text-align: center;
     transition: all 0.2s;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
 }
 
 .kpi-card:hover {
-    border-color: rgba(139,92,246,0.5);
-    background: rgba(139,92,246,0.08);
+    border-color: rgba(99,102,241,0.4);
+    box-shadow: 0 4px 16px rgba(99,102,241,0.12);
+    transform: translateY(-2px);
 }
 
 .kpi-value {
     font-size: 2rem;
     font-weight: 700;
-    color: #a78bfa;
+    color: #4f46e5;
     line-height: 1;
     margin-bottom: 0.3rem;
 }
 
 .kpi-label {
     font-size: 0.8rem;
-    color: #9ca3af;
+    color: #94a3b8;
     font-weight: 400;
 }
 
 .kpi-country {
     font-size: 1rem;
     font-weight: 600;
-    color: #e8e8f0;
+    color: #1e293b;
     margin-bottom: 0.2rem;
 }
 
 .section-title {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #e8e8f0;
+    color: #1e293b;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -114,44 +120,40 @@ html, body, [class*="css"] {
 
 .note-box {
     background: rgba(251,191,36,0.08);
-    border: 1px solid rgba(251,191,36,0.3);
+    border: 1px solid rgba(251,146,36,0.3);
     border-radius: 10px;
     padding: 0.8rem 1.2rem;
     font-size: 0.82rem;
-    color: #fbbf24;
+    color: #92400e;
     margin-top: 1rem;
 }
 
 .stTabs [data-baseweb="tab-list"] {
-    background: rgba(255,255,255,0.03);
+    background: #ffffff;
     border-radius: 12px;
     padding: 4px;
     gap: 4px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
 .stTabs [data-baseweb="tab"] {
     border-radius: 8px;
-    color: #9ca3af;
+    color: #64748b;
     font-weight: 600;
     font-size: 0.9rem;
 }
 
 .stTabs [aria-selected="true"] {
-    background: rgba(139,92,246,0.25) !important;
-    color: #a78bfa !important;
+    background: rgba(99,102,241,0.1) !important;
+    color: #4f46e5 !important;
 }
 
 div[data-testid="metric-container"] {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 12px;
     padding: 1rem;
-}
-
-.sidebar-note {
-    font-size: 0.78rem;
-    color: #6b7280;
-    line-height: 1.5;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -159,10 +161,7 @@ div[data-testid="metric-container"] {
 # ─────────────────────────────────────────────
 #  데이터
 # ─────────────────────────────────────────────
-
-# 현재 출산율 데이터 (2022~2023, OECD Family Database 기준)
 raw = [
-    # 국가,       출산율, ISO3,  대륙,        인구(백만), 출처
     ("대한민국",   0.80, "KOR", "아시아",     51.7,  "원본"),
     ("스페인",     1.11, "ESP", "유럽",       47.4,  "원본"),
     ("리투아니아", 1.03, "LTU", "유럽",        2.8,  "원본"),
@@ -198,9 +197,7 @@ df = pd.DataFrame(raw, columns=["국가","출산율","국가코드","대륙","�
 df_sorted = df.sort_values("출산율").reset_index(drop=True)
 df_sorted["순위"] = df_sorted.index + 1
 
-# 연도별 추이 데이터 (주요 8개국, OECD/World Bank 근사값)
 years = [2000, 2003, 2006, 2009, 2012, 2015, 2018, 2020, 2021, 2022, 2023]
-
 ts_raw = {
     "대한민국":   [1.47, 1.19, 1.13, 1.15, 1.30, 1.24, 0.98, 0.84, 0.81, 0.78, 0.80],
     "스페인":     [1.23, 1.30, 1.37, 1.40, 1.32, 1.33, 1.25, 1.19, 1.19, 1.16, 1.11],
@@ -211,9 +208,15 @@ ts_raw = {
     "노르웨이":   [1.85, 1.80, 1.88, 1.98, 1.85, 1.74, 1.62, 1.48, 1.55, 1.41, 1.48],
     "핀란드":     [1.73, 1.77, 1.84, 1.86, 1.80, 1.65, 1.41, 1.37, 1.46, 1.32, 1.30],
 }
-
 ts_df = pd.DataFrame(ts_raw, index=years).reset_index().rename(columns={"index": "연도"})
 ts_long = ts_df.melt(id_vars="연도", var_name="국가", value_name="출산율")
+
+# 공통 플롯 색상
+PLOT_BG  = "#ffffff"
+PAPER_BG = "#f8f9fc"
+GRID_CLR = "rgba(0,0,0,0.06)"
+TICK_CLR = "#64748b"
+TEXT_CLR = "#1e293b"
 
 # ─────────────────────────────────────────────
 #  Hero Header
@@ -237,7 +240,7 @@ with k1:
     st.markdown("""<div class="kpi-card">
         <div class="kpi-label">🔴 최저 출산율</div>
         <div class="kpi-country">대한민국</div>
-        <div class="kpi-value">0.80</div>
+        <div class="kpi-value" style="color:#ef4444;">0.80</div>
         <div class="kpi-label">명 / 여성</div>
     </div>""", unsafe_allow_html=True)
 
@@ -245,7 +248,7 @@ with k2:
     st.markdown("""<div class="kpi-card">
         <div class="kpi-label">🟢 최고 출산율</div>
         <div class="kpi-country">이스라엘</div>
-        <div class="kpi-value">2.89</div>
+        <div class="kpi-value" style="color:#10b981;">2.89</div>
         <div class="kpi-label">명 / 여성</div>
     </div>""", unsafe_allow_html=True)
 
@@ -263,7 +266,7 @@ with k4:
     st.markdown(f"""<div class="kpi-card">
         <div class="kpi-label">⚠️ 인구대체율 미달</div>
         <div class="kpi-country">2.1명 미만</div>
-        <div class="kpi-value">{below}</div>
+        <div class="kpi-value" style="color:#f59e0b;">{below}</div>
         <div class="kpi-label">개국 / 29개국</div>
     </div>""", unsafe_allow_html=True)
 
@@ -272,7 +275,7 @@ with k5:
     st.markdown(f"""<div class="kpi-card">
         <div class="kpi-label">🚨 초저출산 (1.5↓)</div>
         <div class="kpi-country">임계점 이하</div>
-        <div class="kpi-value">{below_15}</div>
+        <div class="kpi-value" style="color:#ef4444;">{below_15}</div>
         <div class="kpi-label">개국 / 29개국</div>
     </div>""", unsafe_allow_html=True)
 
@@ -288,9 +291,9 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "🔵 인구수 버블 차트",
 ])
 
-# ────────────────────────────────────────────────────────────────────
-#  TAB 1 : 순위 막대 차트
-# ────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────
+#  TAB 1
+# ──────────────────────────────────────────────
 with tab1:
     st.markdown('<div class="section-title">📊 출산율 낮은 순서 — 전체 국가 순위</div>', unsafe_allow_html=True)
 
@@ -299,11 +302,11 @@ with tab1:
     with col_ctrl:
         st.markdown("**🎛️ 옵션**")
         show_estimated = st.checkbox("추정값 국가 강조", value=True)
-        color_theme = st.selectbox("색상 테마", ["보라/파랑", "초록/청록", "주황/빨강"], index=0)
+        color_theme = st.selectbox("색상 테마", ["인디고/파랑", "초록/청록", "주황/빨강"], index=0)
 
     THEME_MAP = {
-        "보라/파랑":   ("#a78bfa", "#3b82f6"),
-        "초록/청록":   ("#34d399", "#06b6d4"),
+        "인디고/파랑": ("#6366f1", "#3b82f6"),
+        "초록/청록":   ("#10b981", "#06b6d4"),
         "주황/빨강":   ("#f97316", "#ef4444"),
     }
     c_primary, c_accent = THEME_MAP[color_theme]
@@ -334,28 +337,26 @@ with tab1:
         orientation="h",
         marker=dict(
             color=bar_colors,
-            line=dict(color="rgba(255,255,255,0.05)", width=0.5),
-            opacity=0.9,
+            line=dict(color="rgba(0,0,0,0.05)", width=0.5),
+            opacity=0.88,
         ),
         text=[f"  {v:.2f}" for v in df_sorted["출산율"]],
         textposition="outside",
-        textfont=dict(color="#e8e8f0", size=11),
+        textfont=dict(color="#374151", size=11),
         hovertemplate="%{customdata}<extra></extra>",
         customdata=hover_text,
     ))
 
-    # 인구대체율 기준선
     fig1.add_vline(
-        x=2.1, line_dash="dot", line_color="#f59e0b", line_width=2,
+        x=2.1, line_dash="dot", line_color="#d97706", line_width=2,
         annotation_text="인구대체율 2.1",
-        annotation_font=dict(color="#f59e0b", size=11),
+        annotation_font=dict(color="#d97706", size=11),
         annotation_position="top right",
     )
-    # 초저출산 기준선
     fig1.add_vline(
-        x=1.5, line_dash="dot", line_color="#f87171", line_width=1.5,
+        x=1.5, line_dash="dot", line_color="#dc2626", line_width=1.5,
         annotation_text="초저출산 1.5",
-        annotation_font=dict(color="#f87171", size=11),
+        annotation_font=dict(color="#dc2626", size=11),
         annotation_position="bottom right",
     )
 
@@ -363,16 +364,14 @@ with tab1:
         height=860,
         xaxis=dict(
             title="출산율 (명/여성)", range=[0, 3.4],
-            gridcolor="rgba(255,255,255,0.06)", zeroline=False,
-            tickfont=dict(color="#9ca3af"),
-            title_font=dict(color="#9ca3af"),
+            gridcolor=GRID_CLR, zeroline=False,
+            tickfont=dict(color=TICK_CLR),
+            title_font=dict(color=TICK_CLR),
         ),
-        yaxis=dict(
-            tickfont=dict(size=12, color="#e8e8f0"),
-        ),
-        plot_bgcolor="#0f0f1a",
-        paper_bgcolor="#0f0f1a",
-        font=dict(family="Noto Sans KR", color="#e8e8f0"),
+        yaxis=dict(tickfont=dict(size=12, color=TEXT_CLR)),
+        plot_bgcolor=PLOT_BG,
+        paper_bgcolor=PAPER_BG,
+        font=dict(family="Noto Sans KR", color=TEXT_CLR),
         margin=dict(l=20, r=80, t=30, b=50),
         showlegend=False,
     )
@@ -380,19 +379,17 @@ with tab1:
     with col_chart:
         st.plotly_chart(fig1, use_container_width=True)
 
-        # 범례
         lcol1, lcol2, lcol3, lcol4 = st.columns(4)
         with lcol1:
             st.markdown("🔴 **대한민국** (최저)")
         with lcol2:
-            st.markdown(f"🟣 **원본 이미지** 데이터")
+            st.markdown("🟣 **원본 이미지** 데이터")
         with lcol3:
             if show_estimated:
                 st.markdown("🟡 **OECD 추정값** 국가")
         with lcol4:
             st.markdown("🟡 **대체율 2.1** / 🔴 **초저 1.5**")
 
-        # 다운로드 버튼
         try:
             img_bytes = fig1.to_image(format="png", width=1400, height=900, scale=2)
             st.download_button(
@@ -410,9 +407,9 @@ with tab1:
         — 출처: OECD Family Database (SF2.1 Fertility Rates, 2025년 4월 업데이트)
     </div>""", unsafe_allow_html=True)
 
-# ────────────────────────────────────────────────────────────────────
-#  TAB 2 : 세계 지도 choropleth
-# ────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────
+#  TAB 2
+# ──────────────────────────────────────────────
 with tab2:
     st.markdown('<div class="section-title">🗺️ 세계 지도로 보는 출산율 분포</div>', unsafe_allow_html=True)
 
@@ -427,7 +424,7 @@ with tab2:
             [0.15, "#f97316"],
             [0.35, "#facc15"],
             [0.60, "#34d399"],
-            [1.0,  "#22d3ee"],
+            [1.0,  "#0ea5e9"],
         ],
         range_color=[0.7, 3.0],
         labels={"출산율": "출산율", "인구(백만)": "인구(백만)"},
@@ -435,36 +432,33 @@ with tab2:
     fig2.update_geos(
         showframe=False,
         showcoastlines=True,
-        coastlinecolor="rgba(255,255,255,0.2)",
+        coastlinecolor="rgba(0,0,0,0.15)",
         showland=True,
-        landcolor="#1a1a2e",
+        landcolor="#f1f5f9",
         showocean=True,
-        oceancolor="#0f0f1a",
+        oceancolor="#dbeafe",
         showlakes=False,
         projection_type="natural earth",
-        bgcolor="#0f0f1a",
+        bgcolor=PAPER_BG,
     )
     fig2.update_layout(
         height=520,
-        paper_bgcolor="#0f0f1a",
-        font=dict(family="Noto Sans KR", color="#e8e8f0"),
+        paper_bgcolor=PAPER_BG,
+        font=dict(family="Noto Sans KR", color=TEXT_CLR),
         coloraxis_colorbar=dict(
             title="출산율",
-            tickfont=dict(color="#9ca3af"),
-            title_font=dict(color="#9ca3af"),
+            tickfont=dict(color=TICK_CLR),
+            title_font=dict(color=TICK_CLR),
         ),
         margin=dict(l=0, r=0, t=10, b=0),
     )
 
     st.plotly_chart(fig2, use_container_width=True)
+    st.markdown("**색상 가이드**: 🔴 붉은색 → 출산율 낮음 | 🟡 노랑 → 중간 | 🔵/🟢 파랑·초록 → 출산율 높음")
 
-    st.markdown("""
-    **색상 가이드**: 🔴 붉은색 → 출산율 낮음 | 🟡 노랑 → 중간 | 🔵/🟢 파랑·초록 → 출산율 높음
-    """)
-
-# ────────────────────────────────────────────────────────────────────
-#  TAB 3 : 연도별 추이 (시계열)
-# ────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────
+#  TAB 3
+# ──────────────────────────────────────────────
 with tab3:
     st.markdown('<div class="section-title">📈 주요 국가 출산율 연도별 추이 (2000–2023)</div>', unsafe_allow_html=True)
 
@@ -481,12 +475,12 @@ with tab3:
         COLORS_TS = {
             "대한민국":   "#ef4444",
             "스페인":     "#f97316",
-            "독일":       "#facc15",
-            "프랑스":     "#4ade80",
-            "미국":       "#60a5fa",
-            "이스라엘":   "#a78bfa",
-            "노르웨이":   "#f472b6",
-            "핀란드":     "#34d399",
+            "독일":       "#d97706",
+            "프랑스":     "#16a34a",
+            "미국":       "#2563eb",
+            "이스라엘":   "#7c3aed",
+            "노르웨이":   "#db2777",
+            "핀란드":     "#0891b2",
         }
 
         fig3 = go.Figure()
@@ -496,45 +490,44 @@ with tab3:
                 x=cdf["연도"], y=cdf["출산율"],
                 mode="lines+markers",
                 name=country,
-                line=dict(width=2.5, color=COLORS_TS.get(country, "#9ca3af")),
+                line=dict(width=2.5, color=COLORS_TS.get(country, "#64748b")),
                 marker=dict(size=7),
                 hovertemplate=f"<b>{country}</b><br>연도: %{{x}}<br>출산율: %{{y:.2f}}<extra></extra>",
             ))
 
-        # 기준선
-        fig3.add_hline(y=2.1, line_dash="dot", line_color="#f59e0b", line_width=1.5)
-        fig3.add_hline(y=1.5, line_dash="dot", line_color="#f87171", line_width=1.5)
+        fig3.add_hline(y=2.1, line_dash="dot", line_color="#d97706", line_width=1.5)
+        fig3.add_hline(y=1.5, line_dash="dot", line_color="#dc2626", line_width=1.5)
 
-        # 코로나 시기 음영
         fig3.add_vrect(
             x0=2020, x1=2021,
-            fillcolor="rgba(255,255,255,0.04)",
-            layer="below", line_width=0        )
+            fillcolor="rgba(0,0,0,0.03)",
+            layer="below", line_width=0,
+        )
 
         fig3.update_layout(
             height=480,
             xaxis=dict(
                 title="연도",
-                gridcolor="rgba(255,255,255,0.06)",
-                tickfont=dict(color="#9ca3af"),
-                title_font=dict(color="#9ca3af"),
+                gridcolor=GRID_CLR,
+                tickfont=dict(color=TICK_CLR),
+                title_font=dict(color=TICK_CLR),
             ),
             yaxis=dict(
                 title="출산율 (명/여성)",
                 range=[0.5, 3.5],
-                gridcolor="rgba(255,255,255,0.06)",
-                tickfont=dict(color="#9ca3af"),
-                title_font=dict(color="#9ca3af"),
+                gridcolor=GRID_CLR,
+                tickfont=dict(color=TICK_CLR),
+                title_font=dict(color=TICK_CLR),
             ),
             legend=dict(
-                font=dict(color="#e8e8f0"),
-                bgcolor="rgba(255,255,255,0.05)",
-                bordercolor="rgba(255,255,255,0.1)",
+                font=dict(color=TEXT_CLR),
+                bgcolor="rgba(255,255,255,0.9)",
+                bordercolor="#e2e8f0",
                 borderwidth=1,
             ),
-            plot_bgcolor="#0f0f1a",
-            paper_bgcolor="#0f0f1a",
-            font=dict(family="Noto Sans KR", color="#e8e8f0"),
+            plot_bgcolor=PLOT_BG,
+            paper_bgcolor=PAPER_BG,
+            font=dict(family="Noto Sans KR", color=TEXT_CLR),
             margin=dict(l=20, r=100, t=30, b=50),
         )
 
@@ -545,9 +538,9 @@ with tab3:
     else:
         st.info("위에서 국가를 1개 이상 선택해주세요.")
 
-# ────────────────────────────────────────────────────────────────────
-#  TAB 4 : 버블 차트 (인구수 × 출산율)
-# ────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────
+#  TAB 4
+# ──────────────────────────────────────────────
 with tab4:
     st.markdown('<div class="section-title">🔵 인구수 × 출산율 버블 차트</div>', unsafe_allow_html=True)
     st.markdown("버블 크기 = 인구 규모, 색상 = 대륙")
@@ -555,9 +548,9 @@ with tab4:
     CONTINENT_COLORS = {
         "유럽":       "#6366f1",
         "아시아":     "#ef4444",
-        "아메리카":   "#34d399",
+        "아메리카":   "#10b981",
         "오세아니아": "#f59e0b",
-        "유럽/아시아":"#f472b6",
+        "유럽/아시아":"#ec4899",
     }
 
     fig4 = go.Figure()
@@ -571,12 +564,12 @@ with tab4:
             name=continent,
             text=sub["국가"],
             textposition="top center",
-            textfont=dict(size=9.5, color="#e8e8f0"),
+            textfont=dict(size=9.5, color="#374151"),
             marker=dict(
                 size=sub["인구(백만)"].apply(lambda p: max(10, min(60, p**0.5 * 5))),
-                color=CONTINENT_COLORS.get(continent, "#9ca3af"),
+                color=CONTINENT_COLORS.get(continent, "#94a3b8"),
                 opacity=0.75,
-                line=dict(color="rgba(255,255,255,0.3)", width=1),
+                line=dict(color="rgba(255,255,255,0.8)", width=1.5),
             ),
             hovertemplate=(
                 "<b>%{text}</b><br>"
@@ -586,32 +579,32 @@ with tab4:
             ),
         ))
 
-    fig4.add_vline(x=2.1, line_dash="dot", line_color="#f59e0b", line_width=1.5)
-    fig4.add_vline(x=1.5, line_dash="dot", line_color="#f87171", line_width=1.5)
+    fig4.add_vline(x=2.1, line_dash="dot", line_color="#d97706", line_width=1.5)
+    fig4.add_vline(x=1.5, line_dash="dot", line_color="#dc2626", line_width=1.5)
 
     fig4.update_layout(
         height=540,
         xaxis=dict(
             title="출산율 (명/여성)", range=[0.6, 3.3],
-            gridcolor="rgba(255,255,255,0.06)",
-            tickfont=dict(color="#9ca3af"), title_font=dict(color="#9ca3af"),
+            gridcolor=GRID_CLR,
+            tickfont=dict(color=TICK_CLR), title_font=dict(color=TICK_CLR),
         ),
         yaxis=dict(
             title="인구 (백만 명)",
             type="log",
-            gridcolor="rgba(255,255,255,0.06)",
-            tickfont=dict(color="#9ca3af"), title_font=dict(color="#9ca3af"),
+            gridcolor=GRID_CLR,
+            tickfont=dict(color=TICK_CLR), title_font=dict(color=TICK_CLR),
         ),
         legend=dict(
-            font=dict(color="#e8e8f0"),
-            bgcolor="rgba(255,255,255,0.05)",
-            bordercolor="rgba(255,255,255,0.1)",
+            font=dict(color=TEXT_CLR),
+            bgcolor="rgba(255,255,255,0.9)",
+            bordercolor="#e2e8f0",
             borderwidth=1,
-            title=dict(text="대륙", font=dict(color="#9ca3af")),
+            title=dict(text="대륙", font=dict(color=TICK_CLR)),
         ),
-        plot_bgcolor="#0f0f1a",
-        paper_bgcolor="#0f0f1a",
-        font=dict(family="Noto Sans KR", color="#e8e8f0"),
+        plot_bgcolor=PLOT_BG,
+        paper_bgcolor=PAPER_BG,
+        font=dict(family="Noto Sans KR", color=TEXT_CLR),
         margin=dict(l=20, r=30, t=30, b=60),
     )
 
@@ -622,7 +615,7 @@ with tab4:
 # ─────────────────────────────────────────────
 st.markdown("---")
 st.markdown("""
-<div style="text-align:center; color:#4b5563; font-size:0.8rem; padding:1rem 0;">
+<div style="text-align:center; color:#94a3b8; font-size:0.8rem; padding:1rem 0;">
     📊 데이터 출처: OECD Family Database (SF2.1 Fertility Rates, 2025.04) · World Bank WDI<br>
     🛠️ Built with Streamlit + Plotly · 일부 국가는 OECD 공개 추정값 사용
 </div>
